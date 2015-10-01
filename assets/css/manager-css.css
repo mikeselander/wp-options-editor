@@ -1,0 +1,34 @@
+fieldset.search-options{
+	margin-bottom:15px;
+	float:left;
+}
+
+.add-option{
+	float:right;
+}
+
+.add-option-form{
+	display:none;
+	clear:both;
+}
+
+.wp-list-table{
+	margin-top:10px;
+	width:100%;
+	table-layout:fixed;
+}
+
+.edit{
+	max-height:500px;
+	overflow:hidden;
+}
+
+.edit{
+	max-height:500px;
+	overflow:hidden;
+	padding:10px 0;
+}
+
+.source-dashicon:not(.dashicons-wordpress){
+	color:#000000;
+}
