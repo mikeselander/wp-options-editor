@@ -386,6 +386,11 @@ class OptionsManagerSettingsPage {
 	 */
 	public function get_options_delete_button( $name ) {
 
+		// Check that the user is logged in & has proper permissions
+		if ( !is_user_logged_in() || !current_user_can( 'manage_options' ) ){
+			return;
+		}
+
 		if ( !in_array( $name, $this->wp_vital_options ) ){
 			return "<a href='javascript:void(0);' onclick=\"verify_option_deletion( '$name', '".admin_url()."tools.php?page=options_editor&delete_option=$name&nonce=".wp_create_nonce( 'wp_options_delete_'.$name )."' );\" class='button-primary' />".__( 'Delete Option', 'options_editor' )."</a>";
 		}
@@ -395,6 +400,8 @@ class OptionsManagerSettingsPage {
 
 	/**
 	 * Handle deletion of options.
+	 *
+	 * @global object $wpdb WP database object access
 	 */
 	public function manager_delete_options(){
 		global $wpdb;
@@ -407,10 +414,14 @@ class OptionsManagerSettingsPage {
 		        return;
 		    }
 
+		    // Check that the user is logged in & has proper permissions
+			if ( !is_user_logged_in() || !current_user_can( 'manage_options' ) ){
+				return;
+			}
+
 			// Verify the nonce
 			if ( isset( $_GET['nonce'] ) && wp_verify_nonce( $_GET['nonce'], 'wp_options_delete_'.$_GET['delete_option'] ) ){
 
-				//$where = $wpdb->prepare( "WHERE option_name=%s", $_GET['delete_option'] );
 				$wpdb->delete( $wpdb->options , array( 'option_name' => $_GET['delete_option'] ), array( '%s' ) );
 
 			} else {
@@ -423,6 +434,8 @@ class OptionsManagerSettingsPage {
 
 	/**
 	 * Handle addition of options.
+	 *
+	 * @global object $wpdb WP database object access
 	 */
 	public function manager_add_option(){
 		global $wpdb;
@@ -433,6 +446,11 @@ class OptionsManagerSettingsPage {
 	    if ( $screen->id != 'tools_page_options_editor' ){
 	        return;
 	    }
+
+	    // Check that the user is logged in & has proper permissions
+		if ( !is_user_logged_in() || !current_user_can( 'manage_options' ) ){
+			return;
+		}
 
 		if ( isset( $_POST['add_option_nonce'] ) && wp_verify_nonce( $_POST['add_option_nonce'], 'add_option_nonce' ) ){
 
@@ -455,10 +473,17 @@ class OptionsManagerSettingsPage {
 	/**
 	 * Quick count of all options in the wp_options table.
 	 *
+	 * @global object $wpdb WP database object access
+	 *
 	 * @return string 		H3 with count of options
 	 */
 	public function manager_count_options(){
 		global $wpdb;
+
+		// Check that the user is logged in & has proper permissions
+		if ( !is_user_logged_in() || !current_user_can( 'manage_options' ) ){
+			return;
+		}
 
 		$count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->options" );
 
@@ -472,10 +497,17 @@ class OptionsManagerSettingsPage {
 	/**
 	 * AJAX function for updating rows.
 	 *
+	 * @global object $wpdb WP database object access
+	 *
 	 * @return string Modified value
 	 */
 	public function manager_ajax_update_option_callback() {
-		global $wpdb; // this is how you get access to the database
+		global $wpdb;
+
+		// Check that the user is logged in & has proper permissions
+		if ( !is_user_logged_in() || !current_user_can( 'manage_options' ) ){
+			return;
+		}
 
 		$name	= $_REQUEST['id'];
 		$value	= $_REQUEST['value'];
@@ -498,6 +530,8 @@ class OptionsManagerSettingsPage {
 	/**
 	 * A cacheless function for getting all the options.
 	 *
+	 * @global object $wpdb WP database object access
+	 *
 	 * @return array All options from the wp_options table
 	 */
 	public function get_all_options_cacheless(){
@@ -519,6 +553,11 @@ class OptionsManagerSettingsPage {
 	 */
 	public function settings_page() {
 		$html = '';
+
+		// Check that the user is logged in & has proper permissions
+		if ( !is_user_logged_in() || !current_user_can( 'manage_options' ) ){
+			return;
+		}
 
 		// Build page HTML
 		$html .= '<div class="wrap" id="options_editor">';
