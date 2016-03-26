@@ -1,23 +1,102 @@
 <?php
 defined( 'ABSPATH' ) OR exit;
 
-
+/**
+ * Options Manager Settings Page
+ *
+ * This class declares & creates the settings page that runs the manager. All
+ * PHP work including AJAX callbacks, page display, and various functionality
+ * are currently housed in this class.
+ *
+ * @category   WordPress
+ * @author     Mike Selander
+ * @since      Class available since Release 1.0
+ */
 class OptionsManagerSettingsPage {
+
+	/**
+	 * dir
+	 * Directory path that this file is in
+	 *
+	 * @var string
+	 * @access private
+	 */
     private $dir;
+
+    /**
+	 * file
+	 * Parent file that calls this class.
+	 *
+	 * @var string
+	 * @access private
+	 */
 	private $file;
+
+	/**
+	 * assets_dir
+	 * Directory path housing the plugin assets.
+	 *
+	 * @var string
+	 * @access private
+	 */
 	private $assets_dir;
+
+	/**
+	 * assets_url
+	 * Directory URL housing the plugin assets.
+	 *
+	 * @var string
+	 * @access private
+	 */
 	private $assets_url;
+
+	/**
+	 * settings_base
+	 * Base ID slug for any options created.
+	 *
+	 * @var string
+	 * @access private
+	 */
 	private $settings_base;
+
+	/**
+	 * settings
+	 * Settings base if created.
+	 *
+	 * @var string
+	 * @access private
+	 */
 	private $settings;
+
+	/**
+	 * wp_vital_options
+	 * Array of options that are vital to WP working and cannot be deleted.
+	 *
+	 * @var array
+	 * @access private
+	 */
 	private $wp_vital_options;
+
+	/**
+	 * wp_default_options
+	 * Array of options that are created by Wp core, but not vital.
+	 *
+	 * @var array
+	 * @access private
+	 */
 	private $wp_default_options;
 
+	/**
+	 * Constructor functon.
+	 *
+	 * @param string $file File path of declaring parent file.
+	 */
 	public function __construct( $file ) {
-		$this->file = $file;
-		$this->dir = dirname( $this->file );
-		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
-		$this->assets_url = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
-		$this->settings_base = 'cn_';
+		$this->file				= $file;
+		$this->dir				= dirname( $this->file );
+		$this->assets_dir		= trailingslashit( $this->dir ) . 'assets';
+		$this->assets_url		= esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
+		$this->settings_base	= 'cn_';
 		$this->wp_vital_options = array(
 			'siteurl',
 			'blogname',
@@ -179,13 +258,17 @@ class OptionsManagerSettingsPage {
 
 		// Add settings link to plugins page
 		add_filter( 'plugin_action_links_' . plugin_basename( $this->file ) , array( $this, 'add_settings_link' ) );
+
 	}
 
+
 	/**
-	 * Add settings page to admin menu
-	 * @return void
+	 * Add settings page to admin menu.
+	 *
+	 * @see $this->options_assets
 	 */
 	public function add_menu_item() {
+
 		$page = add_submenu_page(
 			'tools.php',
 			__( 'Manage WP Options Table', 'options_editor' ),
@@ -198,17 +281,27 @@ class OptionsManagerSettingsPage {
 		add_action( 'admin_print_styles-' . $page, array( $this, 'options_assets' ) );
 		add_action('load-'.$page, array( $this, 'manager_delete_options' ) );
 		add_action('load-'.$page, array( $this, 'manager_add_option' ) );
+
 	}
 
+
 	/**
-	 * Load settings JS & CSS
-	 * @return void
+	 * Load settings JS & CSS on our specific admin page
+	 *
+	 * @see wp_register_script, wp_localize_script, wp_enqueue_style, wp_enqueue_script
 	 */
 	public function options_assets() {
 
         // We're including the farbtastic script & styles here because they're needed for the colour picker
         wp_register_script( 'comment-notifier-js', $this->assets_url . 'js/manager-list.js', array( 'jquery' ), '1.0.0', true );
-        wp_localize_script( 'comment-notifier-js', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+        wp_localize_script(
+        	'comment-notifier-js',
+        	'ajax_object',
+        	array(
+        		'ajax_url'	=> admin_url( 'admin-ajax.php' )
+        	)
+        );
+
         wp_register_style( 'manager-css', $this->assets_url . 'css/manager-css.css', array(), '1', 'all' );
 
 		wp_enqueue_style( 'manager-css' );
@@ -216,21 +309,33 @@ class OptionsManagerSettingsPage {
 
 	}
 
+
 	/**
-	 * Add settings link to plugin list table
+	 * Add settings link to plugin list table.
+	 *
 	 * @param  array $links Existing links
 	 * @return array 		Modified links
 	 */
 	public function add_settings_link( $links ) {
+
 		$settings_link = '<a href="options-general.php?page=options_editor">' . __( 'Settings', 'options_editor' ) . '</a>';
   		array_push( $links, $settings_link );
   		return $links;
+
 	}
 
+
 	/**
-	 * Parse for certain sources of options rows and return a specialized icon if applicable
+	 * Parse for certain sources of options rows and return a specialized icon
+	 * if applicable.
+	 *
+	 * This function is a basic case evaluator that swaps out an icon for easy
+	 * identification of the author of a particular option. The benefit here is
+	 * that you can easily see who's adding a bunch of nonsense to your options
+	 * table.
+	 *
 	 * @param  string $name	Name of the option
-	 * @return string $html String with icon
+	 * @return string 	 	String with icon
 	 */
 	public function wp_options_source( $name ) {
 		$html = '';
@@ -272,10 +377,12 @@ class OptionsManagerSettingsPage {
 
 	}
 
+
 	/**
-	 * Return a delete button only for non-core options
+	 * Return a delete button only for non-core options.
+	 *
 	 * @param  string $name	Name of the option
-	 * @return string $html String with icon
+	 * @return string 		Deletion button
 	 */
 	public function get_options_delete_button( $name ) {
 
@@ -285,9 +392,9 @@ class OptionsManagerSettingsPage {
 
 	}
 
+
 	/**
-	 * Handle deletion of options
-	 * @return void
+	 * Handle deletion of options.
 	 */
 	public function manager_delete_options(){
 		global $wpdb;
@@ -296,12 +403,12 @@ class OptionsManagerSettingsPage {
 			$screen = get_current_screen();
 
 		    // Check if current screen is My Admin Page
-		    if ( $screen->id != 'tools_page_'.'options_editor' ){
+		    if ( $screen->id != 'tools_page_options_editor' ){
 		        return;
 		    }
 
 			// Verify the nonce
-			if ( wp_verify_nonce( $_GET['nonce'], 'wp_options_delete_'.$_GET['delete_option'] ) ){
+			if ( isset( $_GET['nonce'] ) && wp_verify_nonce( $_GET['nonce'], 'wp_options_delete_'.$_GET['delete_option'] ) ){
 
 				//$where = $wpdb->prepare( "WHERE option_name=%s", $_GET['delete_option'] );
 				$wpdb->delete( $wpdb->options , array( 'option_name' => $_GET['delete_option'] ), array( '%s' ) );
@@ -313,9 +420,9 @@ class OptionsManagerSettingsPage {
 
 	}
 
+
 	/**
-	 * Handle addition of options
-	 * @return void
+	 * Handle addition of options.
 	 */
 	public function manager_add_option(){
 		global $wpdb;
@@ -323,7 +430,7 @@ class OptionsManagerSettingsPage {
 		$screen = get_current_screen();
 
 	    // Check if current screen is My Admin Page
-	    if ( $screen->id != 'tools_page_'.'options_editor' ){
+	    if ( $screen->id != 'tools_page_options_editor' ){
 	        return;
 	    }
 
@@ -344,8 +451,10 @@ class OptionsManagerSettingsPage {
 		}
 	}
 
+
 	/**
-	 * Quick count of all options in the wp_options table
+	 * Quick count of all options in the wp_options table.
+	 *
 	 * @return string 		H3 with count of options
 	 */
 	public function manager_count_options(){
@@ -359,9 +468,11 @@ class OptionsManagerSettingsPage {
 
 	}
 
+
 	/**
-	 * AJAX function for updating rows
-	 * @return string 		Modified value
+	 * AJAX function for updating rows.
+	 *
+	 * @return string Modified value
 	 */
 	public function manager_ajax_update_option_callback() {
 		global $wpdb; // this is how you get access to the database
@@ -383,9 +494,11 @@ class OptionsManagerSettingsPage {
 
 	}
 
+
 	/**
-	 * A cacheless function for getting all the options
-	 * @return array 		All options from the wp_options table
+	 * A cacheless function for getting all the options.
+	 *
+	 * @return array All options from the wp_options table
 	 */
 	public function get_all_options_cacheless(){
 		global $wpdb;
@@ -400,16 +513,16 @@ class OptionsManagerSettingsPage {
 
 	}
 
+
 	/**
-	 * Load settings page content
-	 * @return void
+	 * Load settings page content.
 	 */
 	public function settings_page() {
 		$html = '';
 
 		// Build page HTML
-		$html .= '<div class="wrap" id="options_editor">' . "\n";
-			$html .= '<h2>' . __( 'Manage Options' , 'options_editor' ) . '</h2>' . "\n";
+		$html .= '<div class="wrap" id="options_editor">';
+			$html .= '<h2>' . __( 'Manage Options' , 'options_editor' ) . '</h2>';
 
 				$all_options = $this->get_all_options_cacheless();
 
@@ -418,15 +531,15 @@ class OptionsManagerSettingsPage {
 				$html .= "<div id='wp-options-manager' width='100%;'>";
 
 				$html .= "<fieldset class='search-options'>";
-					$html .= "<label>Live Search Table: </label>";
-					$html .= "<input type='text' class='search' placeholder='Search' />";
+					$html .= "<label>".__( 'Live Search', 'options_editor' )." </label>";
+					$html .= "<input type='text' class='search' placeholder='".__( 'Search', 'options_editor' )."' />";
 				$html .= "</fieldset>";
 
 				$html .= "<a href='javascript:void(0);' class='button-primary add-option'>".__( 'Add Option', 'options_editor' )."</a>";
 
 				$html .= "<form method='POST' action='".admin_url()."tools.php?page=options_editor' class='add-option-form'>";
 
-					$html .= "<h2>Add Option</h2>";
+					$html .= "<h2>".__( 'Add Option', 'options_editor' )."</h2>";
 
 					$html .= "<table class='form-table'>";
 
@@ -460,7 +573,7 @@ class OptionsManagerSettingsPage {
 
 					$html .= "<thead>";
 
-						$html .= "<th scope='col' class='manage-column column-source' style='width:7%;'>".__( 'Source', 'options_editor' )."</th>";
+						$html .= "<th scope='col' class='manage-column column-source' style='width:7%;'>".__( 'Author', 'options_editor' )."</th>";
 						$html .= "<th scope='col' class='sort manage-column column-name' data-sort='option-name'>".__( 'Option Name', 'options_editor' )."</th>";
 						$html .= "<th scope='col' class='sort manage-column column-information' data-sort='option-value'>".__( 'Option Data', 'options_editor' )."</th>";
 						$html .= "<th scope='col' class='manage-column column-date' style='width:14%;'>".__( 'Actions', 'options_editor' )."</th>";
@@ -496,7 +609,7 @@ class OptionsManagerSettingsPage {
 
 				$html .= "</div>";
 
-		$html .= '</div>' . "\n";
+		$html .= "</div>";
 
 		echo $html;
 

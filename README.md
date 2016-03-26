@@ -1,6 +1,5 @@
 # WP Options Editor
 
-=== WP Options Editor ===
 Contributors: mikeselander
 Donate link: https://mikeselander.com
 Tags: wp_options, development, wp options table, edit, delete, add
