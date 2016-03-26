@@ -4,7 +4,7 @@ Plugin Name: WP Options Editor
 Plugin URI: http://wordpress.org/plugins/wp-options-editor/
 Description: More easily view, edit, add, and delete all of your WP Options from the dashboard
 Author: Mike Selander
-Version: 1.0
+Version: 1.0.1
 Author URI: http://www.mikeselander.com/
 */
 
@@ -17,7 +17,6 @@ if ( is_admin() ){
 }
 
 // define the plugin url
-if (! defined('WPOE_URL') ){
-	define('WPOE_URL', plugins_url( '' ,  __FILE__ ) );
+if ( ! defined( 'WPOE_URL' ) ){
+	define( 'WPOE_URL', plugins_url( '' ,  __FILE__ ) );
 }
-?>
