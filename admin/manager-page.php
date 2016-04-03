@@ -308,7 +308,9 @@ class OptionsManagerSettingsPage {
         	'comment-notifier-js',
         	'ajax_object',
         	array(
-        		'ajax_url'	=> admin_url( 'admin-ajax.php' )
+        		'ajax_url'		=> admin_url( 'admin-ajax.php' ),
+        		'noticeStrOne'	=> __( 'You are about to delete the', 'options_editor' ),
+        		'noticeStrTwo'	=> __( 'option - this can break vital parts of your website. Do you want to continue?', 'options_editor' )
         	)
         );
 

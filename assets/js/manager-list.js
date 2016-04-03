@@ -10,7 +10,7 @@ var optionsList = new List( 'wp-options-manager', options );
 
 function verify_option_deletion( option, loc )
 {
-	var agree = confirm( "You are about to delete the " + option + " option - this can break vital parts of your website. Do you want to continue?" );
+	var agree = confirm( ajax_object.noticeStrOne + " " + option + " " + ajax_object.noticeStrTwo );
 	if (agree)
 	location.href=loc ;
 }

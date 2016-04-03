@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WP Options Editor 1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/WP Options "
 "Editor\n"
-"POT-Creation-Date: 2016-04-03 08:45:29+00:00\n"
+"POT-Creation-Date: 2016-04-03 19:20:50+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,91 +21,100 @@ msgstr ""
 msgid "Manage wp_options"
 msgstr ""
 
-#: admin/manager-page.php:331
+#: admin/manager-page.php:312
+msgid "You are about to delete the"
+msgstr ""
+
+#: admin/manager-page.php:313
+msgid ""
+"option - this can break vital parts of your website. Do you want to continue?"
+msgstr ""
+
+#: admin/manager-page.php:333
 msgid "Edit Options"
 msgstr ""
 
-#: admin/manager-page.php:355
+#: admin/manager-page.php:357
 msgid "WordPress Core option"
 msgstr ""
 
-#: admin/manager-page.php:359
+#: admin/manager-page.php:361
 msgid "Theme option"
 msgstr ""
 
-#: admin/manager-page.php:363
+#: admin/manager-page.php:365
 msgid "Jetpack option"
 msgstr ""
 
-#: admin/manager-page.php:367
+#: admin/manager-page.php:369
 msgid "WooCommerce option"
 msgstr ""
 
-#: admin/manager-page.php:371
+#: admin/manager-page.php:373
 msgid "Gravity Forms option"
 msgstr ""
 
-#: admin/manager-page.php:375
+#: admin/manager-page.php:377
 msgid "iThemes Security option"
 msgstr ""
 
-#: admin/manager-page.php:379
+#: admin/manager-page.php:381
 msgid "Yoast/WP SEO option"
 msgstr ""
 
-#: admin/manager-page.php:383
+#: admin/manager-page.php:385
 msgid "Plugin option"
 msgstr ""
 
-#: admin/manager-page.php:405
+#: admin/manager-page.php:407
 msgid "Delete"
 msgstr ""
 
-#: admin/manager-page.php:501
+#: admin/manager-page.php:503
 msgid "%d total options in the %s table"
 msgstr ""
 
-#: admin/manager-page.php:574
+#: admin/manager-page.php:576
 msgid "Manage Options"
 msgstr ""
 
-#: admin/manager-page.php:583
+#: admin/manager-page.php:585
 msgid "Live Search"
 msgstr ""
 
-#: admin/manager-page.php:584
+#: admin/manager-page.php:586
 msgid "Search"
 msgstr ""
 
-#: admin/manager-page.php:587 admin/manager-page.php:591
+#: admin/manager-page.php:589 admin/manager-page.php:593
 msgid "Add Option"
 msgstr ""
 
-#: admin/manager-page.php:599
+#: admin/manager-page.php:601
 msgid "Option Name:"
 msgstr ""
 
-#: admin/manager-page.php:606
+#: admin/manager-page.php:608
 msgid "Option Value:"
 msgstr ""
 
-#: admin/manager-page.php:617
+#: admin/manager-page.php:619
 msgid "Submit"
 msgstr ""
 
-#: admin/manager-page.php:625
+#: admin/manager-page.php:627
 msgid "Author"
 msgstr ""
 
-#: admin/manager-page.php:626
+#: admin/manager-page.php:628
 msgid "Option Name"
 msgstr ""
 
-#: admin/manager-page.php:627
+#: admin/manager-page.php:629
 msgid "Option Data"
 msgstr ""
 
-#: admin/manager-page.php:628
+#: admin/manager-page.php:630
 msgid "Actions"
 msgstr ""
 
