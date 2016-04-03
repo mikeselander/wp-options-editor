@@ -29,24 +29,26 @@ Please be careful when using this plugin! You can easily delete an option that i
 
 == Upgrade Notice ==
 
-= 1.0.1 =
-Cleanup Release
+= 1.1 =
+* Cleanup Release
 * Fixed all WP_DEBUG-triggered errors
 * General code audit/cleanup
 * Fixed GF con & added Yoast SEO icon
 * Fixed wording in search & replace sections
+* Added several security checks on all admin functions
 
 = 1.0.0 =
 Initial Release
 
 == Changelog ==
 
-= 1.0.1 =
-Cleanup Release
+= 1.1 =
+* Cleanup Release
 * Fixed all WP_DEBUG-triggered errors
 * General code audit/cleanup
 * Fixed GF con & added Yoast SEO icon
 * Fixed wording in search & replace sections
+* Added several security checks on all admin functions
 
 = 1.0.0 =
 * Initial release

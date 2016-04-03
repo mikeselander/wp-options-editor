@@ -1,0 +1,132 @@
+# Copyright (C) 2016 WP Options Editor
+# This file is distributed under the same license as the WP Options Editor package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Options Editor 1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/WP Options "
+"Editor\n"
+"POT-Creation-Date: 2016-04-03 08:45:29+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/manager-page.php:275
+msgid "Manage WP Options Table"
+msgstr ""
+
+#: admin/manager-page.php:276
+msgid "Manage wp_options"
+msgstr ""
+
+#: admin/manager-page.php:331
+msgid "Edit Options"
+msgstr ""
+
+#: admin/manager-page.php:355
+msgid "WordPress Core option"
+msgstr ""
+
+#: admin/manager-page.php:359
+msgid "Theme option"
+msgstr ""
+
+#: admin/manager-page.php:363
+msgid "Jetpack option"
+msgstr ""
+
+#: admin/manager-page.php:367
+msgid "WooCommerce option"
+msgstr ""
+
+#: admin/manager-page.php:371
+msgid "Gravity Forms option"
+msgstr ""
+
+#: admin/manager-page.php:375
+msgid "iThemes Security option"
+msgstr ""
+
+#: admin/manager-page.php:379
+msgid "Yoast/WP SEO option"
+msgstr ""
+
+#: admin/manager-page.php:383
+msgid "Plugin option"
+msgstr ""
+
+#: admin/manager-page.php:405
+msgid "Delete"
+msgstr ""
+
+#: admin/manager-page.php:501
+msgid "%d total options in the %s table"
+msgstr ""
+
+#: admin/manager-page.php:574
+msgid "Manage Options"
+msgstr ""
+
+#: admin/manager-page.php:583
+msgid "Live Search"
+msgstr ""
+
+#: admin/manager-page.php:584
+msgid "Search"
+msgstr ""
+
+#: admin/manager-page.php:587 admin/manager-page.php:591
+msgid "Add Option"
+msgstr ""
+
+#: admin/manager-page.php:599
+msgid "Option Name:"
+msgstr ""
+
+#: admin/manager-page.php:606
+msgid "Option Value:"
+msgstr ""
+
+#: admin/manager-page.php:617
+msgid "Submit"
+msgstr ""
+
+#: admin/manager-page.php:625
+msgid "Author"
+msgstr ""
+
+#: admin/manager-page.php:626
+msgid "Option Name"
+msgstr ""
+
+#: admin/manager-page.php:627
+msgid "Option Data"
+msgstr ""
+
+#: admin/manager-page.php:628
+msgid "Actions"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WP Options Editor"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/plugins/wp-options-editor/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Easily view, edit, add, and delete all of your WP Options rows from the "
+"dashboard"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Mike Selander"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.mikeselander.com/"
+msgstr ""
