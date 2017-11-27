@@ -272,8 +272,8 @@ class OptionsManagerSettingsPage {
 
 		$page = add_submenu_page(
 			'tools.php',
-			__( 'Manage WP Options Table', 'options_editor' ),
-			__( 'Manage wp_options', 'options_editor' ),
+			__( 'Manage WP Options Table', 'wp-options-editor' ),
+			__( 'Manage wp_options', 'wp-options-editor' ),
 			'manage_options',
 			'options_editor',
 			array( $this, 'settings_page' )
@@ -291,7 +291,7 @@ class OptionsManagerSettingsPage {
 	 * @see load_plugin_textdomain
 	 */
 	public function load_textdomain() {
-	    load_plugin_textdomain( 'options_editor', FALSE, basename( dirname( $this->file ) ) . '/languages/' );
+	    load_plugin_textdomain( 'wp-options-editor', FALSE, basename( dirname( $this->file ) ) . '/languages/' );
 	}
 
 
@@ -309,8 +309,8 @@ class OptionsManagerSettingsPage {
         	'ajax_object',
         	array(
         		'ajax_url'		=> admin_url( 'admin-ajax.php' ),
-        		'noticeStrOne'	=> __( 'You are about to delete the', 'options_editor' ),
-        		'noticeStrTwo'	=> __( 'option - this can break vital parts of your website. Do you want to continue?', 'options_editor' )
+        		'noticeStrOne'	=> __( 'You are about to delete the', 'wp-options-editor' ),
+        		'noticeStrTwo'	=> __( 'option - this can break vital parts of your website. Do you want to continue?', 'wp-options-editor' )
         	)
         );
 
@@ -330,7 +330,7 @@ class OptionsManagerSettingsPage {
 	 */
 	public function add_settings_link( $links ) {
 
-		$settings_link = '<a href="options-general.php?page=options_editor">' . __( 'Edit Options', 'options_editor' ) . '</a>';
+		$settings_link = '<a href="options-general.php?page=options_editor">' . __( 'Edit Options', 'wp-options-editor' ) . '</a>';
   		array_push( $links, $settings_link );
   		return $links;
 
@@ -354,35 +354,35 @@ class OptionsManagerSettingsPage {
 
 		// WP Core
 		if ( in_array( $name, $this->wp_default_options ) || in_array( $name, $this->wp_vital_options ) || preg_match( '/_site_transient_timeout_poptags\w{3,}/', $name ) || preg_match( '/_site_transient_poptags\w{3,}/', $name ) ){
-			$html .= "<a class='dashicons dashicons-wordpress source-dashicon' title='".__( 'WordPress Core option', 'options_editor' )."'></a>";
+			$html .= "<a class='dashicons dashicons-wordpress source-dashicon' title='".__( 'WordPress Core option', 'wp-options-editor' )."'></a>";
 
 		// Themes
 		} else if ( preg_match( '/theme_mods\w{3,}/', $name )  ){
-			$html .= "<a class='dashicons dashicons-admin-appearance source-dashicon' title='".__( 'Theme option', 'options_editor' )."'></a>";
+			$html .= "<a class='dashicons dashicons-admin-appearance source-dashicon' title='".__( 'Theme option', 'wp-options-editor' )."'></a>";
 
 		// Jetpack
 		} else if ( preg_match( '/jetpack\w{3,}/', $name )  ){
-			$html .= "<a class='dashicons source-dashicon' style='font-family: jetpack!important; font-size: 1.3em!important;' title='".__( 'Jetpack option', 'options_editor' )."'>&#61698;</a>";
+			$html .= "<a class='dashicons source-dashicon' style='font-family: jetpack!important; font-size: 1.3em!important;' title='".__( 'Jetpack option', 'wp-options-editor' )."'>&#61698;</a>";
 
 		// Woocommerce
 		} else if ( preg_match( '/woocommerce\w{3,}/', $name ) || preg_match( '/shop_\w{3,}_image_size/', $name ) ){
-			$html .= "<a class='dashicons source-dashicon' style='font-family: WooCommerce!important; font-size: 1.3em!important;' title='".__( 'WooCommerce option', 'options_editor' )."'>&#57405;</a>";
+			$html .= "<a class='dashicons source-dashicon' style='font-family: WooCommerce!important; font-size: 1.3em!important;' title='".__( 'WooCommerce option', 'wp-options-editor' )."'>&#57405;</a>";
 
 		// Gravity Forms
 		} else if ( preg_match( '/gform\w{3,}/', $name ) || preg_match( '/gravityform\w{3,}/', $name ) || preg_match( '/rg_form\w{3,}/', $name ) ){
-			$html .= "<a class='dashicons source-dashicon' style='background-image: url(\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSItMTUgNzcgNTgxIDY0MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAtMTUgNzcgNTgxIDY0MCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGcgaWQ9IkxheWVyXzIiPjxwYXRoIGZpbGw9IiM5OTkiIGQ9Ik00ODkuNSwyMjdMNDg5LjUsMjI3TDMxNS45LDEyNi44Yy0yMi4xLTEyLjgtNTguNC0xMi44LTgwLjUsMEw2MS44LDIyN2MtMjIuMSwxMi44LTQwLjMsNDQuMi00MC4zLDY5Ljd2MjAwLjVjMCwyNS42LDE4LjEsNTYuOSw0MC4zLDY5LjdsMTczLjYsMTAwLjJjMjIuMSwxMi44LDU4LjQsMTIuOCw4MC41LDBMNDg5LjUsNTY3YzIyLjItMTIuOCw0MC4zLTQ0LjIsNDAuMy02OS43VjI5Ni44QzUyOS44LDI3MS4yLDUxMS43LDIzOS44LDQ4OS41LDIyN3ogTTQwMSwzMDAuNHY1OS4zSDI0MXYtNTkuM0g0MDF6IE0xNjMuMyw0OTAuOWMtMTYuNCwwLTI5LjYtMTMuMy0yOS42LTI5LjZjMC0xNi40LDEzLjMtMjkuNiwyOS42LTI5LjZzMjkuNiwxMy4zLDI5LjYsMjkuNkMxOTIuOSw0NzcuNiwxNzkuNiw0OTAuOSwxNjMuMyw0OTAuOXogTTE2My4zLDM1OS43Yy0xNi40LDAtMjkuNi0xMy4zLTI5LjYtMjkuNnMxMy4zLTI5LjYsMjkuNi0yOS42czI5LjYsMTMuMywyOS42LDI5LjZTMTc5LjYsMzU5LjcsMTYzLjMsMzU5Ljd6IE0yNDEsNDkwLjl2LTU5LjNoMTYwdjU5LjNIMjQxeiIvPjwvZz48L3N2Zz4=\"); background-repeat: no-repeat;' title='".__( 'Gravity Forms option', 'options_editor' )."'></a>";
+			$html .= "<a class='dashicons source-dashicon' style='background-image: url(\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSItMTUgNzcgNTgxIDY0MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAtMTUgNzcgNTgxIDY0MCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGcgaWQ9IkxheWVyXzIiPjxwYXRoIGZpbGw9IiM5OTkiIGQ9Ik00ODkuNSwyMjdMNDg5LjUsMjI3TDMxNS45LDEyNi44Yy0yMi4xLTEyLjgtNTguNC0xMi44LTgwLjUsMEw2MS44LDIyN2MtMjIuMSwxMi44LTQwLjMsNDQuMi00MC4zLDY5Ljd2MjAwLjVjMCwyNS42LDE4LjEsNTYuOSw0MC4zLDY5LjdsMTczLjYsMTAwLjJjMjIuMSwxMi44LDU4LjQsMTIuOCw4MC41LDBMNDg5LjUsNTY3YzIyLjItMTIuOCw0MC4zLTQ0LjIsNDAuMy02OS43VjI5Ni44QzUyOS44LDI3MS4yLDUxMS43LDIzOS44LDQ4OS41LDIyN3ogTTQwMSwzMDAuNHY1OS4zSDI0MXYtNTkuM0g0MDF6IE0xNjMuMyw0OTAuOWMtMTYuNCwwLTI5LjYtMTMuMy0yOS42LTI5LjZjMC0xNi40LDEzLjMtMjkuNiwyOS42LTI5LjZzMjkuNiwxMy4zLDI5LjYsMjkuNkMxOTIuOSw0NzcuNiwxNzkuNiw0OTAuOSwxNjMuMyw0OTAuOXogTTE2My4zLDM1OS43Yy0xNi40LDAtMjkuNi0xMy4zLTI5LjYtMjkuNnMxMy4zLTI5LjYsMjkuNi0yOS42czI5LjYsMTMuMywyOS42LDI5LjZTMTc5LjYsMzU5LjcsMTYzLjMsMzU5Ljd6IE0yNDEsNDkwLjl2LTU5LjNoMTYwdjU5LjNIMjQxeiIvPjwvZz48L3N2Zz4=\"); background-repeat: no-repeat;' title='".__( 'Gravity Forms option', 'wp-options-editor' )."'></a>";
 
 		// iThemes Security
 		} else if ( preg_match( '/itsec\w{3,}/', $name )  ){
-			$html .= "<a class='dashicons source-dashicon' style='font-family: ithemes-icons!important; font-size: 1.3em!important;' title='".__( 'iThemes Security option', 'options_editor' )."'>&#61701;</a>";
+			$html .= "<a class='dashicons source-dashicon' style='font-family: ithemes-icons!important; font-size: 1.3em!important;' title='".__( 'iThemes Security option', 'wp-options-editor' )."'>&#61701;</a>";
 
 		// Yoast/WP SEO
 		} else if ( preg_match( '/wpseo\w{3,}/', $name )  ){
-			$html .= "<a class='dashicons source-dashicon' style='background-image: url(\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IiM5OTkiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48Zz48Zz48Zz48Zz48cGF0aCBzdHlsZT0iZmlsbDojOTk5IiBkPSJNMjAzLjYsMzk1YzYuOC0xNy40LDYuOC0zNi42LDAtNTRsLTc5LjQtMjA0aDcwLjlsNDcuNywxNDkuNGw3NC44LTIwNy42SDExNi40Yy00MS44LDAtNzYsMzQuMi03Niw3NlYzNTdjMCw0MS44LDM0LjIsNzYsNzYsNzZIMTczQzE4OSw0MjQuMSwxOTcuNiw0MTAuMywyMDMuNiwzOTV6Ii8+PC9nPjxnPjxwYXRoIHN0eWxlPSJmaWxsOiM5OTkiIGQ9Ik00NzEuNiwxNTQuOGMwLTQxLjgtMzQuMi03Ni03Ni03NmgtM0wyODUuNywzNjVjLTkuNiwyNi43LTE5LjQsNDkuMy0zMC4zLDY4aDIxNi4yVjE1NC44eiIvPjwvZz48L2c+PHBhdGggc3R5bGU9ImZpbGw6Izk5OSIgc3Ryb2tlLXdpZHRoPSIyLjk3NCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNMzM4LDEuM2wtOTMuMywyNTkuMWwtNDIuMS0xMzEuOWgtODkuMWw4My44LDIxNS4yYzYsMTUuNSw2LDMyLjUsMCw0OGMtNy40LDE5LTE5LDM3LjMtNTMsNDEuOWwtNy4yLDF2NzZoOC4zYzgxLjcsMCwxMTguOS01Ny4yLDE0OS42LTE0Mi45TDQzMS42LDEuM0gzMzh6IE0yNzkuNCwzNjJjLTMyLjksOTItNjcuNiwxMjguNy0xMjUuNywxMzEuOHYtNDVjMzcuNS03LjUsNTEuMy0zMSw1OS4xLTUxLjFjNy41LTE5LjMsNy41LTQwLjcsMC02MGwtNzUtMTkyLjdoNTIuOGw1My4zLDE2Ni44bDEwNS45LTI5NGg1OC4xTDI3OS40LDM2MnoiLz48L2c+PC9nPjwvc3ZnPg==\"); background-repeat: no-repeat' title='".__( 'Yoast/WP SEO option', 'options_editor' )."'></a>";
+			$html .= "<a class='dashicons source-dashicon' style='background-image: url(\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IiM5OTkiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48Zz48Zz48Zz48Zz48cGF0aCBzdHlsZT0iZmlsbDojOTk5IiBkPSJNMjAzLjYsMzk1YzYuOC0xNy40LDYuOC0zNi42LDAtNTRsLTc5LjQtMjA0aDcwLjlsNDcuNywxNDkuNGw3NC44LTIwNy42SDExNi40Yy00MS44LDAtNzYsMzQuMi03Niw3NlYzNTdjMCw0MS44LDM0LjIsNzYsNzYsNzZIMTczQzE4OSw0MjQuMSwxOTcuNiw0MTAuMywyMDMuNiwzOTV6Ii8+PC9nPjxnPjxwYXRoIHN0eWxlPSJmaWxsOiM5OTkiIGQ9Ik00NzEuNiwxNTQuOGMwLTQxLjgtMzQuMi03Ni03Ni03NmgtM0wyODUuNywzNjVjLTkuNiwyNi43LTE5LjQsNDkuMy0zMC4zLDY4aDIxNi4yVjE1NC44eiIvPjwvZz48L2c+PHBhdGggc3R5bGU9ImZpbGw6Izk5OSIgc3Ryb2tlLXdpZHRoPSIyLjk3NCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNMzM4LDEuM2wtOTMuMywyNTkuMWwtNDIuMS0xMzEuOWgtODkuMWw4My44LDIxNS4yYzYsMTUuNSw2LDMyLjUsMCw0OGMtNy40LDE5LTE5LDM3LjMtNTMsNDEuOWwtNy4yLDF2NzZoOC4zYzgxLjcsMCwxMTguOS01Ny4yLDE0OS42LTE0Mi45TDQzMS42LDEuM0gzMzh6IE0yNzkuNCwzNjJjLTMyLjksOTItNjcuNiwxMjguNy0xMjUuNywxMzEuOHYtNDVjMzcuNS03LjUsNTEuMy0zMSw1OS4xLTUxLjFjNy41LTE5LjMsNy41LTQwLjcsMC02MGwtNzUtMTkyLjdoNTIuOGw1My4zLDE2Ni44bDEwNS45LTI5NGg1OC4xTDI3OS40LDM2MnoiLz48L2c+PC9nPjwvc3ZnPg==\"); background-repeat: no-repeat' title='".__( 'Yoast/WP SEO option', 'wp-options-editor' )."'></a>";
 
 		// All others from plugins
 		} else {
-			$html .= "<a class='dashicons dashicons-admin-plugins' title='".__( 'Plugin option', 'options_editor' )."'></a>";
+			$html .= "<a class='dashicons dashicons-admin-plugins' title='".__( 'Plugin option', 'wp-options-editor' )."'></a>";
 		}
 
 		return $html;
@@ -404,7 +404,7 @@ class OptionsManagerSettingsPage {
 		}
 
 		if ( !in_array( $name, $this->wp_vital_options ) ){
-			return "<a href='javascript:void(0);' onclick=\"verify_option_deletion( '$name', '".admin_url()."tools.php?page=options_editor&delete_option=$name&nonce=".wp_create_nonce( 'wp_options_delete_'.$name )."' );\" class='button-primary' />".__( 'Delete', 'options_editor' )."</a>";
+			return "<a href='javascript:void(0);' onclick=\"verify_option_deletion( '$name', '".admin_url()."tools.php?page=options_editor&delete_option=$name&nonce=".wp_create_nonce( 'wp_options_delete_'.$name )."' );\" class='button-primary' />".__( 'Delete', 'wp-options-editor' )."</a>";
 		}
 
 	}
@@ -500,7 +500,7 @@ class OptionsManagerSettingsPage {
 		$count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->options" );
 
 		if ( $count ){
-			return "<h3>".sprintf( __( '%d total options in the %s table', 'options_editor' ), $count, $wpdb->prefix.'options' )."</h3>";
+			return "<h3>".sprintf( __( '%d total options in the %s table', 'wp-options-editor' ), $count, $wpdb->prefix.'options' )."</h3>";
 		}
 
 	}
@@ -573,7 +573,7 @@ class OptionsManagerSettingsPage {
 
 		// Build page HTML
 		$html .= '<div class="wrap" id="options_editor">';
-			$html .= '<h2>' . __( 'Manage Options' , 'options_editor' ) . '</h2>';
+			$html .= '<h2>' . __( 'Manage Options' , 'wp-options-editor' ) . '</h2>';
 
 				$all_options = $this->get_all_options_cacheless();
 
@@ -582,15 +582,15 @@ class OptionsManagerSettingsPage {
 				$html .= "<div id='wp-options-manager' width='100%;'>";
 
 				$html .= "<fieldset class='search-options'>";
-					$html .= "<label>".__( 'Live Search', 'options_editor' )." </label>";
-					$html .= "<input type='text' class='search' placeholder='".__( 'Search', 'options_editor' )."' />";
+					$html .= "<label>".__( 'Live Search', 'wp-options-editor' )." </label>";
+					$html .= "<input type='text' class='search' placeholder='".__( 'Search', 'wp-options-editor' )."' />";
 				$html .= "</fieldset>";
 
-				$html .= "<a href='javascript:void(0);' class='button-primary add-option'>".__( 'Add Option', 'options_editor' )."</a>";
+				$html .= "<a href='javascript:void(0);' class='button-primary add-option'>".__( 'Add Option', 'wp-options-editor' )."</a>";
 
 				$html .= "<form method='POST' action='".admin_url()."tools.php?page=options_editor' class='add-option-form'>";
 
-					$html .= "<h2>".__( 'Add Option', 'options_editor' )."</h2>";
+					$html .= "<h2>".__( 'Add Option', 'wp-options-editor' )."</h2>";
 
 					$html .= "<table class='form-table'>";
 
@@ -598,14 +598,14 @@ class OptionsManagerSettingsPage {
 
 							$html .= "<tr>";
 
-								$html .= "<th><label>".__( 'Option Name:', 'options_editor' )."</label></th>";
+								$html .= "<th><label>".__( 'Option Name:', 'wp-options-editor' )."</label></th>";
 								$html .= "<td><input type='text' name='add_option_name'></td>";
 
 							$html .= "</tr>";
 
 							$html .= "<tr>";
 
-								$html .= "<th><label>".__( 'Option Value:', 'options_editor' )."</label></th>";
+								$html .= "<th><label>".__( 'Option Value:', 'wp-options-editor' )."</label></th>";
 								$html .= "<td><input type='text' name='add_option_value'></td>";
 
 							$html .= "</tr>";
@@ -616,7 +616,7 @@ class OptionsManagerSettingsPage {
 
 					$html .= "</table>";
 
-					$html .= "<button type='submit' class='submit button-primary'>".__( 'Submit', 'options_editor' )."</button>";
+					$html .= "<button type='submit' class='submit button-primary'>".__( 'Submit', 'wp-options-editor' )."</button>";
 
 				$html .= "</form>";
 
@@ -624,10 +624,10 @@ class OptionsManagerSettingsPage {
 
 					$html .= "<thead>";
 
-						$html .= "<th scope='col' class='manage-column column-source' style='width:7%;'>".__( 'Author', 'options_editor' )."</th>";
-						$html .= "<th scope='col' class='sort manage-column column-name' data-sort='option-name'>".__( 'Option Name', 'options_editor' )."</th>";
-						$html .= "<th scope='col' class='sort manage-column column-information' data-sort='option-value'>".__( 'Option Data', 'options_editor' )."</th>";
-						$html .= "<th scope='col' class='manage-column column-date' style='width:14%;'>".__( 'Actions', 'options_editor' )."</th>";
+						$html .= "<th scope='col' class='manage-column column-source' style='width:7%;'>".__( 'Author', 'wp-options-editor' )."</th>";
+						$html .= "<th scope='col' class='sort manage-column column-name' data-sort='option-name'>".__( 'Option Name', 'wp-options-editor' )."</th>";
+						$html .= "<th scope='col' class='sort manage-column column-information' data-sort='option-value'>".__( 'Option Data', 'wp-options-editor' )."</th>";
+						$html .= "<th scope='col' class='manage-column column-date' style='width:14%;'>".__( 'Actions', 'wp-options-editor' )."</th>";
 
 					$html .= "</thead>";
 
