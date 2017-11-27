@@ -6,6 +6,8 @@ Description: Easily view, edit, add, and delete all of your WP Options rows from
 Author: Mike Selander
 Version: 1.1
 Author URI: http://www.mikeselander.com/
+Text Domain: wp-options-editor
+Domain Path: /languages
 */
 
 // include the settings page
