@@ -15,8 +15,3 @@ require_once( 'admin/manager-page.php' );
 if ( is_admin() ){
 	$settings = new OptionsManagerSettingsPage( __FILE__ );
 }
-
-// define the plugin url
-if ( ! defined( 'WPOE_URL' ) ){
-	define( 'WPOE_URL', plugins_url( '' ,  __FILE__ ) );
-}
