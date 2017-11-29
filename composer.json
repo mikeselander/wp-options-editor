@@ -1,5 +1,5 @@
 {
-    "name": "evans",
+    "name": "wp-options-editor",
     "type": "wordpress-plugin",
     "license": "GPL V2",
     "minimum-stability": "dev",
