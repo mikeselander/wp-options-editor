@@ -285,7 +285,7 @@ class OptionsManagerSettingsPage {
 			array(
 				'ajax_url'     => admin_url( 'admin-ajax.php' ),
 				'noticeStrOne' => __( 'You are about to delete the', 'wp-options-editor' ),
-				'noticeStrTwo' => __( 'option - this can break vital parts of your website. Do you want to continue?', 'wp-options-editor' )
+				'noticeStrTwo' => __( 'option - this can break vital parts of your website. Do you want to continue?', 'wp-options-editor' ),
 			)
 		);
 
@@ -331,31 +331,31 @@ class OptionsManagerSettingsPage {
 		) {
 			$html .= "<a class='dashicons dashicons-wordpress source-dashicon' title='" . __( 'WordPress Core option', 'wp-options-editor' ) . "'></a>";
 
-		// Themes.
+			// Themes.
 		} elseif ( preg_match( '/theme_mods\w{3,}/', $name ) ) {
 			$html .= "<a class='dashicons dashicons-admin-appearance source-dashicon' title='" . __( 'Theme option', 'wp-options-editor' ) . "'></a>";
 
-		// Jetpack.
+			// Jetpack.
 		} elseif ( preg_match( '/jetpack\w{3,}/', $name ) ) {
 			$html .= "<a class='dashicons source-dashicon' style='font-family: jetpack!important; font-size: 1.3em!important;' title='" . __( 'Jetpack option', 'wp-options-editor' ) . "'>&#61698;</a>";
 
-		// Woocommerce.
+			// Woocommerce.
 		} elseif ( preg_match( '/woocommerce\w{3,}/', $name ) || preg_match( '/shop_\w{3,}_image_size/', $name ) ) {
 			$html .= "<a class='dashicons source-dashicon' style='font-family: WooCommerce!important; font-size: 1.3em!important;' title='" . __( 'WooCommerce option', 'wp-options-editor' ) . "'>&#57405;</a>";
 
-		// Gravity Forms.
+			// Gravity Forms.
 		} elseif ( preg_match( '/gform\w{3,}/', $name ) || preg_match( '/gravityform\w{3,}/', $name ) || preg_match( '/rg_form\w{3,}/', $name ) ) {
 			$html .= "<a class='dashicons source-dashicon' style='background-image: url(\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSItMTUgNzcgNTgxIDY0MCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAtMTUgNzcgNTgxIDY0MCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGcgaWQ9IkxheWVyXzIiPjxwYXRoIGZpbGw9IiM5OTkiIGQ9Ik00ODkuNSwyMjdMNDg5LjUsMjI3TDMxNS45LDEyNi44Yy0yMi4xLTEyLjgtNTguNC0xMi44LTgwLjUsMEw2MS44LDIyN2MtMjIuMSwxMi44LTQwLjMsNDQuMi00MC4zLDY5Ljd2MjAwLjVjMCwyNS42LDE4LjEsNTYuOSw0MC4zLDY5LjdsMTczLjYsMTAwLjJjMjIuMSwxMi44LDU4LjQsMTIuOCw4MC41LDBMNDg5LjUsNTY3YzIyLjItMTIuOCw0MC4zLTQ0LjIsNDAuMy02OS43VjI5Ni44QzUyOS44LDI3MS4yLDUxMS43LDIzOS44LDQ4OS41LDIyN3ogTTQwMSwzMDAuNHY1OS4zSDI0MXYtNTkuM0g0MDF6IE0xNjMuMyw0OTAuOWMtMTYuNCwwLTI5LjYtMTMuMy0yOS42LTI5LjZjMC0xNi40LDEzLjMtMjkuNiwyOS42LTI5LjZzMjkuNiwxMy4zLDI5LjYsMjkuNkMxOTIuOSw0NzcuNiwxNzkuNiw0OTAuOSwxNjMuMyw0OTAuOXogTTE2My4zLDM1OS43Yy0xNi40LDAtMjkuNi0xMy4zLTI5LjYtMjkuNnMxMy4zLTI5LjYsMjkuNi0yOS42czI5LjYsMTMuMywyOS42LDI5LjZTMTc5LjYsMzU5LjcsMTYzLjMsMzU5Ljd6IE0yNDEsNDkwLjl2LTU5LjNoMTYwdjU5LjNIMjQxeiIvPjwvZz48L3N2Zz4=\"); background-repeat: no-repeat;' title='" . __( 'Gravity Forms option', 'wp-options-editor' ) . "'></a>";
 
-		// iThemes Security.
+			// iThemes Security.
 		} elseif ( preg_match( '/itsec\w{3,}/', $name ) ) {
-			$html .= "<a class='dashicons source-dashicon' style='font-family: ithemes-icons!important; font-size: 1.3em!important;' title='".__( 'iThemes Security option', 'wp-options-editor' )."'>&#61701;</a>";
+			$html .= "<a class='dashicons source-dashicon' style='font-family: ithemes-icons!important; font-size: 1.3em!important;' title='" . __( 'iThemes Security option', 'wp-options-editor' ) . "'>&#61701;</a>";
 
-		// Yoast/WP SEO.
+			// Yoast/WP SEO.
 		} elseif ( preg_match( '/wpseo\w{3,}/', $name ) ) {
 			$html .= "<a class='dashicons source-dashicon' style='background-image: url(\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIGZpbGw9IiM5OTkiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48Zz48Zz48Zz48Zz48cGF0aCBzdHlsZT0iZmlsbDojOTk5IiBkPSJNMjAzLjYsMzk1YzYuOC0xNy40LDYuOC0zNi42LDAtNTRsLTc5LjQtMjA0aDcwLjlsNDcuNywxNDkuNGw3NC44LTIwNy42SDExNi40Yy00MS44LDAtNzYsMzQuMi03Niw3NlYzNTdjMCw0MS44LDM0LjIsNzYsNzYsNzZIMTczQzE4OSw0MjQuMSwxOTcuNiw0MTAuMywyMDMuNiwzOTV6Ii8+PC9nPjxnPjxwYXRoIHN0eWxlPSJmaWxsOiM5OTkiIGQ9Ik00NzEuNiwxNTQuOGMwLTQxLjgtMzQuMi03Ni03Ni03NmgtM0wyODUuNywzNjVjLTkuNiwyNi43LTE5LjQsNDkuMy0zMC4zLDY4aDIxNi4yVjE1NC44eiIvPjwvZz48L2c+PHBhdGggc3R5bGU9ImZpbGw6Izk5OSIgc3Ryb2tlLXdpZHRoPSIyLjk3NCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNMzM4LDEuM2wtOTMuMywyNTkuMWwtNDIuMS0xMzEuOWgtODkuMWw4My44LDIxNS4yYzYsMTUuNSw2LDMyLjUsMCw0OGMtNy40LDE5LTE5LDM3LjMtNTMsNDEuOWwtNy4yLDF2NzZoOC4zYzgxLjcsMCwxMTguOS01Ny4yLDE0OS42LTE0Mi45TDQzMS42LDEuM0gzMzh6IE0yNzkuNCwzNjJjLTMyLjksOTItNjcuNiwxMjguNy0xMjUuNywxMzEuOHYtNDVjMzcuNS03LjUsNTEuMy0zMSw1OS4xLTUxLjFjNy41LTE5LjMsNy41LTQwLjcsMC02MGwtNzUtMTkyLjdoNTIuOGw1My4zLDE2Ni44bDEwNS45LTI5NGg1OC4xTDI3OS40LDM2MnoiLz48L2c+PC9nPjwvc3ZnPg==\"); background-repeat: no-repeat' title='" . __( 'Yoast/WP SEO option', 'wp-options-editor' ) . "'></a>";
 
-		// All others from plugins.
+			// All others from plugins.
 		} else {
 			$html .= "<a class='dashicons dashicons-admin-plugins' title='" . __( 'Plugin option', 'wp-options-editor' ) . "'></a>";
 		}
@@ -401,7 +401,15 @@ class OptionsManagerSettingsPage {
 
 			// Verify the nonce.
 			if ( isset( $_GET['nonce'] ) && wp_verify_nonce( $_GET['nonce'], 'wp_options_delete_' . $_GET['delete_option'] ) ) {
-				$wpdb->delete( $wpdb->options , array( 'option_name' => $_GET['delete_option'] ), array( '%s' ) );
+				$wpdb->delete(
+					$wpdb->options,
+					array(
+						'option_name' => $_GET['delete_option'],
+					),
+					array(
+						'%s',
+					)
+				);
 			} else {
 				return;
 			}
@@ -479,8 +487,12 @@ class OptionsManagerSettingsPage {
 
 		$wpdb->update(
 			$wpdb->options,
-			array( 'option_value' => $value ),
-			array( 'option_name' => $name ),
+			array(
+				'option_value' => $value,
+			),
+			array(
+				'option_name' => $name,
+			),
 			array( '%s' ),
 			array( '%s' )
 		);

@@ -10,10 +10,10 @@ Text Domain: wp-options-editor
 Domain Path: /languages
 */
 
-// include the settings page
+// include the settings page.
 require_once( 'admin/manager-page.php' );
 
-// Load the settings page if we're in the admin section
+// Load the settings page if we're in the admin section.
 if ( is_admin() ) {
 	$settings = new OptionsManagerSettingsPage( __FILE__ );
 }
