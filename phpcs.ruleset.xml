@@ -11,6 +11,11 @@
 
     <!-- Don't restrict namespace to `inc/` directory -->
     <exclude name="HM.Files.NamespaceDirectoryName" />
+
+		<!-- For now, eliminate PHP5.4+ sniffs - we'll come back to this later -->
+		<exclude name="PSR1.Classes.ClassDeclaration" />
+		<exclude name="PSR2.Namespaces.NamespaceDeclaration" />
+		<exclude name="Generic.Arrays.DisallowLongArraySyntax" />
   </rule>
 
   <!-- Add PHPDoc rules -->
