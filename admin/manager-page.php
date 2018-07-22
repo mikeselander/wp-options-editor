@@ -302,7 +302,7 @@ class OptionsManagerSettingsPage {
 	 * @return array Modified links
 	 */
 	public function add_settings_link( $links ) {
-		$settings_link = '<a href="options-general.php?page=options_editor">' . __( 'Edit Options', 'wp-options-editor' ) . '</a>';
+		$settings_link = '<a href="tools.php?page=options_editor">' . __( 'Edit Options', 'wp-options-editor' ) . '</a>';
 		array_push( $links, $settings_link );
 		return $links;
 	}
