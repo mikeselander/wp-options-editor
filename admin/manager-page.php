@@ -221,6 +221,7 @@ class OptionsManagerSettingsPage {
 			'link_manager_enabled',
 			'initial_db_version',
 			'theme_switched',
+			'WPLANG',
 		);
 		$this->wp_default_options = array(
 			'_site_transient_update_core',
