@@ -173,6 +173,13 @@ class OptionsManagerSettingsPage {
 			'widget_recent_comments',
 			'widget_wholinked',
 			'widget_polls',
+			'widget_media_audio',
+			'widget_media_image',
+			'widget_media_gallery',
+			'widget_media_video',
+			'widget_tag_cloud',
+			'widget_nav_menu',
+			'widget_custom_html',
 			'tag_base',
 			'page_on_front',
 			'page_for_posts',
@@ -230,6 +237,8 @@ class OptionsManagerSettingsPage {
 			'initial_db_version',
 			'theme_switched',
 			'WPLANG',
+			'wp_page_for_privacy_policy',
+			'new_admin_email',
 		);
 		$this->wp_default_options = array(
 			'_site_transient_update_core',
