@@ -18,6 +18,13 @@
 class OptionsManagerSettingsPage {
 
 	/**
+	 * Current plugin version
+	 *
+	 * @var string
+	 */
+	private $plugin_version;
+
+	/**
 	 * Directory path that this file is in
 	 *
 	 * @var string
@@ -84,6 +91,7 @@ class OptionsManagerSettingsPage {
 		$this->assets_dir       = trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url       = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
 		$this->settings_base    = 'cn_';
+		$this->plugin_version   = '1.2.0-dev';
 		$this->wp_vital_options = array(
 			'siteurl',
 			'blogname',
@@ -279,7 +287,7 @@ class OptionsManagerSettingsPage {
 	 */
 	public function options_assets() {
 		// We're including the farbtastic script & styles here because they're needed for the colour picker.
-		wp_register_script( 'comment-notifier-js', $this->assets_url . 'js/manager-list.js', array( 'jquery' ), '1.0.0', true );
+		wp_register_script( 'comment-notifier-js', $this->assets_url . 'js/manager-list.js', array( 'jquery' ), $this->plugin_version, true );
 		wp_localize_script(
 			'comment-notifier-js',
 			'ajax_object',
@@ -290,7 +298,7 @@ class OptionsManagerSettingsPage {
 			)
 		);
 
-		wp_register_style( 'manager-css', $this->assets_url . 'css/manager-css.css', array(), '1', 'all' );
+		wp_register_style( 'manager-css', $this->assets_url . 'css/manager-css.css', array(), $this->plugin_version, 'all' );
 
 		wp_enqueue_style( 'manager-css' );
 		wp_enqueue_script( 'comment-notifier-js' );
